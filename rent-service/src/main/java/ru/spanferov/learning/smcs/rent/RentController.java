@@ -40,7 +40,7 @@ public class RentController {
         FinkDTO finkDTO = new FinkDTO(request.getRemoteAddr(), count.orElse(0), fee.getBody().getFee());
         ResponseEntity<HttpStatus> fink = restTemplate.postForEntity(finkUri, finkDTO, HttpStatus.class);
 
-        return new RentDTO(entityCount.addAndGet( -1 * count.orElse(0) ), fee.getBody().getFee());
+        return new RentDTO(entityCount.addAndGet( -2 * count.orElse(0) ), fee.getBody().getFee());
     }
 
 }
