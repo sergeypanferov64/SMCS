@@ -1,14 +1,13 @@
 package ru.spanferov.learning.smcs.book;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "books")
 public class BookController implements CommandLineRunner {
 
 
@@ -21,9 +20,14 @@ public class BookController implements CommandLineRunner {
     }
 
 
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public List<Book> list() {
         return books;
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public Book get(@PathVariable Integer id) {
+        return books.get(id);
     }
 
 }
