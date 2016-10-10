@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "books")
+@RequestMapping
 public class BookController implements CommandLineRunner {
 
 
@@ -20,12 +20,12 @@ public class BookController implements CommandLineRunner {
     }
 
 
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<Book> list() {
         return books;
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Book get(@PathVariable Integer id) {
         return books.get(id);
     }

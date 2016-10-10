@@ -18,9 +18,14 @@ public class FilmController implements CommandLineRunner {
         films.add(new Film(1L, "2001 год: Космическая одиссея", "Стэнли Кубрик", 1968));
     }
 
-    @RequestMapping(value = "/films", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<Film> list() {
         return films;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Film get(@PathVariable Integer id) {
+        return films.get(id);
     }
 
 }
