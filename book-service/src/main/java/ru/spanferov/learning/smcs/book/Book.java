@@ -1,23 +1,25 @@
 package ru.spanferov.learning.smcs.book;
 
+import java.util.List;
+
 public class Book {
 
 
     private Long id;
     private String title;
-    private String isbn;
     private String author;
-    private Integer publishYear;
+    private Integer yaer;
+    private List<Long> relatedFilms;
 
     public Book() {
     }
 
-    public Book(Long id, String title, String isbn, String author, Integer publishYear) {
+    public Book(Long id, String title, String author, Integer yaer, List<Long> relatedFilms) {
         this.id = id;
         this.title = title;
-        this.isbn = isbn;
         this.author = author;
-        this.publishYear = publishYear;
+        this.yaer = yaer;
+        this.relatedFilms = relatedFilms;
     }
 
     public Long getId() {
@@ -36,14 +38,6 @@ public class Book {
         this.title = title;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public String getAuthor() {
         return author;
     }
@@ -52,11 +46,19 @@ public class Book {
         this.author = author;
     }
 
-    public Integer getPublishYear() {
-        return publishYear;
+    public Integer getYaer() {
+        return yaer;
     }
 
-    public void setPublishYear(Integer publishYear) {
-        this.publishYear = publishYear;
+    public void setYaer(Integer yaer) {
+        this.yaer = yaer;
+    }
+
+    public List<Long> getRelatedFilms() {
+        return relatedFilms;
+    }
+
+    public void setRelatedFilms(List<Long> relatedFilms) {
+        this.relatedFilms = relatedFilms;
     }
 }

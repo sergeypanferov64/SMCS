@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -14,11 +15,10 @@ public class BookController implements CommandLineRunner {
     public static List<Book> books = new ArrayList<Book>();
 
     public void run(String... strings) throws Exception {
-        books.add(new Book(1L, "Война и мир", "978-5-699-08860-7,978-5-699-35301-9", "Лев Толстой", 2004));
-        books.add(new Book(2L, "Преступление и наказание", "978-5-699-65516-8", "Фёдор Достоевский", 2014));
-        books.add(new Book(3L, "Тихий Дон", "978-5-389-08712-5", "Михаил Шолохов", 2014));
+        books.add(new Book(1L, "Война и мир", "Лев Толстой", 2004, Arrays.asList(4L,5L)));
+        books.add(new Book(2L, "Преступление и наказание", "Фёдор Достоевский", 2014, null));
+        books.add(new Book(3L, "Тихий Дон", "Михаил Шолохов", 2014, Arrays.asList(6L)));
     }
-
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Book> list() {
