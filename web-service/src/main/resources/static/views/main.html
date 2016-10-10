@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-<h1>hello world</h1>
-
-</body>
-</html>
+<h3>Books</h3>
+<ul>
+    <li ng-repeat="book in books">
+        <a ng-href="/#/books/{{book.id}}">{{book.title}}</a>
+    </li>
+</ul>
