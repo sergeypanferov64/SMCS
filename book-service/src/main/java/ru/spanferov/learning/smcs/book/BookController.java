@@ -1,7 +1,9 @@
 package ru.spanferov.learning.smcs.book;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ import java.util.List;
 public class BookController implements CommandLineRunner {
 
     @Autowired
-    private FilmsClient filmsClient;
+    private FilmsClientBean filmsClient;
 
     public static List<Book> books = new ArrayList<Book>();
 
@@ -39,4 +41,22 @@ public class BookController implements CommandLineRunner {
         List<Film> films = filmsClient.list(book.getRelatedFilms());
         return new BookWithFilms(book, films);
     }
+
+
+    @Component
+    class FilmsClientBean {
+
+        @Autowired
+        private FilmsClient filmsClient;
+
+        @HystrixCommand(fallbackMethod = "defaultFilms")
+        public List<Film> list(List<Long> ids) {
+            return filmsClient.list(ids);
+        }
+
+        public List<Film> defaultFilms(List<Long> ids) {
+            return new ArrayList<Film>();
+        }
+    }
+
 }

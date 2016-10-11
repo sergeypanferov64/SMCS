@@ -54,6 +54,7 @@
         <module>web-service</module>
         <module>film-service</module>
         <module>eureka-server</module>
+        <module>hystrix-dashboard</module>
     </modules>
 
 </project>
