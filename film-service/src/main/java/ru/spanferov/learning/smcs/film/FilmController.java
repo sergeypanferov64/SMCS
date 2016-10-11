@@ -23,18 +23,17 @@ public class FilmController implements CommandLineRunner {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Film> list() {
-        return films;
+    public List<Film> list(@RequestParam(value = "ids", required = false) List<Long> ids) {
+        if (ids != null && !ids.isEmpty()) {
+            return films.stream().filter(f -> ids.contains(f.getId())).collect(Collectors.toList());
+        } else {
+            return films;
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Film get(@PathVariable Integer id) {
         return films.get(id);
-    }
-
-    @RequestMapping(value = "/{ids}", method = RequestMethod.POST)
-    public List<Film> get(@PathVariable List<Long> ids) {
-        return films.stream().filter(f -> ids.contains(f.getId())).collect(Collectors.toList());
     }
 
 }
