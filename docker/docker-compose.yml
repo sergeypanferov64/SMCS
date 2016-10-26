@@ -1,0 +1,46 @@
+web-service:
+  build: ../web-service
+  ports:
+    - "8080:8080"
+  environment:
+    - SPRING_PROFILES_ACTIVE=docker
+  links:
+    - eureka-server
+    - film-service
+    - book-service
+
+book-service:
+  build: ../book-service
+  ports:
+    - "8081:8081"
+  environment:
+    - SPRING_PROFILES_ACTIVE=docker
+  links:
+    - eureka-server
+    - film-service
+
+film-service:
+  build: ../film-service
+  ports:
+    - "8082:8082"
+  environment:
+    - SPRING_PROFILES_ACTIVE=docker
+  links:
+    - eureka-server
+
+hystrix-dashboard:
+  build: ../hystrix-dashboard
+  ports:
+    - "8383:8383"
+  environment:
+    - SPRING_PROFILES_ACTIVE=docker
+  links:
+    - eureka-server
+    - book-service
+    - film-service
+    - web-service
+
+eureka-server:
+  build: ../eureka-server
+  ports:
+    - "8761:8761"
